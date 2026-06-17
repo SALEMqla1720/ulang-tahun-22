@@ -1,99 +1,72 @@
-const modeBtn = document.getElementById('mode-btn');
-const candleTrigger = document.getElementById('candle-trigger');
-const giftBox = document.getElementById('gift-box');
-const wishText = document.getElementById('wish-text');
-const instructionText = document.getElementById('instruction-text');
-const bgMusic = document.getElementById('bg-music');
-const canvas = document.getElementById('confetti');
-const ctx = canvas.getContext('2d');
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 22nd Birthday! ✨</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="confetti"></canvas>
 
-let confettiArray = [];
-let animationActive = false;
+    <div class="balloon-container" id="balloons">
+        <div class="balloon b1"></div>
+        <div class="balloon b2"></div>
+        <div class="balloon b3"></div>
+        <div class="balloon b4"></div>
+    </div>
 
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mp3">
+    </audio>
 
-class Confetti {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height - canvas.height;
-        this.size = Math.random() * 7 + 4;
-        this.color = `hsl(${Math.random() * 360}, 85%, 65%)`;
-        this.speedX = Math.random() * 2 - 1;
-        this.speedY = Math.random() * 3 + 2;
-    }
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.y > canvas.height) {
-            this.y = -10;
-            this.x = Math.random() * canvas.width;
-        }
-    }
-    draw() {
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.size, this.size);
-    }
-}
-
-function initConfetti() {
-    confettiArray = [];
-    for (let i = 0; i < 120; i++) {
-        confettiArray.push(new Confetti());
-    }
-}
-
-function animate() {
-    if (!animationActive) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    confettiArray.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(animate);
-}
-
-// 1. KLIK MULAI PESTA (MASUK MODE GELAP & MUSIK BERPUTAR)
-modeBtn.addEventListener('click', () => {
-    document.body.classList.add('dark-mode');
-    modeBtn.classList.add('hidden');
-    
-    // Putar Musik Otomatis secara halus
-    bgMusic.volume = 0.5; 
-    bgMusic.play().catch(error => console.log("Interaksi musik diblokir browser: ", error));
-    
-    // Aktifkan Lilin
-    candleTrigger.classList.add('active');
-    instructionText.innerHTML = "Sekarang, silakan <strong>klik lilinnya</strong> untuk ditiup! 🕯️✨";
-});
-
-// 2. KLIK TIUP LILIN (MATI + EFEK ASAP + KADO MUNCUL)
-candleTrigger.addEventListener('click', () => {
-    if (candleTrigger.classList.contains('active') && !candleTrigger.classList.contains('candles-off')) {
-        candleTrigger.classList.add('candles-off'); // Ini memicu hilangnya api dan munculnya asap di CSS
+    <div class="card" id="birthday-card">
+        <h1 class="title">Happy Birthday</h1>
+        <div class="badge">22</div>
         
-        instructionText.innerText = "Lilin ditiup! Sesuatu muncul di bawah... 🎁";
-        
-        // Berikan delay waktu agar asap selesai beranimasi terlebih dahulu, baru kado muncul mewah
-        setTimeout(() => {
-            giftBox.classList.remove('hidden');
-            instructionText.innerText = "Yaaay! Buka kotak kadomu sekarang 🎁✨";
-            
-            // Nyalakan hujan confetti meriah
-            animationActive = true;
-            initConfetti();
-            animate();
-        }, 1200); 
-    }
-});
+        <div class="cake-container">
+            <div class="cake">
+                <div class="layer layer-bottom"></div>
+                <div class="layer layer-middle"></div>
+                <div class="layer layer-top"></div>
+                
+                <div class="candle-group" id="candle-trigger">
+                    <div class="candle c1">
+                        <div class="wick"></div>
+                        <div class="flame"></div>
+                        <div class="smoke"></div>
+                    </div>
+                    <div class="candle c2">
+                        <div class="wick"></div>
+                        <div class="flame"></div>
+                        <div class="smoke"></div>
+                    </div>
+                    <div class="candle c3">
+                        <div class="wick"></div>
+                        <div class="flame"></div>
+                        <div class="smoke"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-// 3. KLIK KADO (TOGGLE BUKA/TUTUP TEKS UCAPAN)
-giftBox.addEventListener('click', () => {
-    giftBox.classList.toggle('open');
-    if (giftBox.classList.contains('open')) {
-        wishText.classList.add('show');
-    } else {
-        wishText.classList.remove('show');
-    }
-});
+        <div class="control-area">
+            <button id="mode-btn" class="btn-premium">Mulai Pesta ✨</button>
+            <p class="instruction" id="instruction-text">Klik tombol di atas untuk kejutan eksklusif.</p>
+        </div>
+
+        <div class="gift-container hidden" id="gift-box">
+            <div class="gift-cap"></div>
+            <div class="gift-body"></div>
+        </div>
+
+        <div class="wish-box" id="wish-text">
+            <h2>Cheers to 22 Years! 🥂</h2>
+            <div class="divider"></div>
+            <p>Selamat memasuki usia ke-22! Di momen yang sangat spesial ini, semoga langkahmu selalu dituntun menuju keberhasilan, hatimu dipenuhi kedamaian, dan dikelilingi oleh orang-orang tersayang. Nikmati setiap prosesnya dan jadilah versi terbaik dirimu! 💖🌟</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
