@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 22nd Birthday! 🎂</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="confetti"></canvas>
+
+    <div class="card" id="birthday-card">
+        <h1 class="title">Selamat Ulang Tahun! 🎉</h1>
+        
+        <div class="cake-container">
+            <div class="cake">
+                <div class="layer layer-bottom"></div>
+                <div class="layer layer-middle"></div>
+                <div class="layer layer-top"></div>
+                
+                <div class="candle-group" id="candle-trigger">
+                    <div class="candle c1">
+                        <div class="wick"></div>
+                        <div class="flame"></div>
+                    </div>
+                    <div class="candle c2">
+                        <div class="wick"></div>
+                        <div class="flame"></div>
+                    </div>
+                    <div class="candle c3">
+                        <div class="wick"></div>
+                        <div class="flame"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-area">
+            <button id="mode-btn" class="btn">Matikan Lampu 🌙</button>
+            <p class="instruction" id="instruction-text">Matikan lampu terlebih dahulu untuk memulai pesta! ✨</p>
+        </div>
+
+        <div class="gift-container hidden" id="gift-box">
+            <div class="gift-cap"></div>
+            <div class="gift-body"></div>
+        </div>
+
+        <div class="wish-box" id="wish-text">
+            <h2>Happy 22nd Birthday! 🎂✨</h2>
+            <p>Selamat memasuki usia ke-22! Semoga di umur yang baru ini kamu selalu diberikan kesehatan, kebahagiaan yang melimpah, dan kemudahan dalam mengejar semua impianmu. Tetap jadi pribadi yang luar biasa! 💖</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
