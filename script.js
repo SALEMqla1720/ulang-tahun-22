@@ -59,9 +59,11 @@ modeBtn.addEventListener('click', () => {
     document.body.classList.add('dark-mode');
     modeBtn.classList.add('hidden');
     
-    // Putar Musik Otomatis secara halus
-    bgMusic.volume = 0.5; 
-    bgMusic.play().catch(error => console.log("Interaksi musik diblokir browser: ", error));
+    // Putar Musik secara interaktif (Lolos dari blokir browser)
+    bgMusic.volume = 0.6; 
+    bgMusic.play().catch(error => {
+        console.log("Autoplay musik tertahan browser, akan dicoba kembali saat tiup lilin.", error);
+    });
     
     // Aktifkan Lilin
     candleTrigger.classList.add('active');
@@ -71,16 +73,19 @@ modeBtn.addEventListener('click', () => {
 // 2. KLIK TIUP LILIN (MATI + EFEK ASAP + KADO MUNCUL)
 candleTrigger.addEventListener('click', () => {
     if (candleTrigger.classList.contains('active') && !candleTrigger.classList.contains('candles-off')) {
-        candleTrigger.classList.add('candles-off'); // Ini memicu hilangnya api dan munculnya asap di CSS
+        candleTrigger.classList.add('candles-off'); // Ini memicu asap di CSS
         
+        // Cadangan paksa putar musik jika langkah pertama tadi diblokir sistem browser HP
+        bgMusic.play().catch(() => {});
+
         instructionText.innerText = "Lilin ditiup! Sesuatu muncul di bawah... 🎁";
         
-        // Berikan delay waktu agar asap selesai beranimasi terlebih dahulu, baru kado muncul mewah
+        // Berikan jeda estetika agar animasi asap selesai dulu baru kado muncul
         setTimeout(() => {
             giftBox.classList.remove('hidden');
             instructionText.innerText = "Yaaay! Buka kotak kadomu sekarang 🎁✨";
             
-            // Nyalakan hujan confetti meriah
+            // Nyalakan hujan confetti
             animationActive = true;
             initConfetti();
             animate();
