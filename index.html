@@ -3,14 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 22nd Birthday! 🎂</title>
+    <title>Happy 22nd Birthday! ✨</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <canvas id="confetti"></canvas>
 
+    <div class="balloon-container" id="balloons">
+        <div class="balloon b1"></div>
+        <div class="balloon b2"></div>
+        <div class="balloon b3"></div>
+        <div class="balloon b4"></div>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+    </audio>
+
     <div class="card" id="birthday-card">
-        <h1 class="title">Selamat Ulang Tahun! 🎉</h1>
+        <h1 class="title">Happy Birthday</h1>
+        <div class="badge">22</div>
         
         <div class="cake-container">
             <div class="cake">
@@ -22,22 +34,25 @@
                     <div class="candle c1">
                         <div class="wick"></div>
                         <div class="flame"></div>
+                        <div class="smoke"></div>
                     </div>
                     <div class="candle c2">
                         <div class="wick"></div>
                         <div class="flame"></div>
+                        <div class="smoke"></div>
                     </div>
                     <div class="candle c3">
                         <div class="wick"></div>
                         <div class="flame"></div>
+                        <div class="smoke"></div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="control-area">
-            <button id="mode-btn" class="btn">Matikan Lampu 🌙</button>
-            <p class="instruction" id="instruction-text">Matikan lampu terlebih dahulu untuk memulai pesta! ✨</p>
+            <button id="mode-btn" class="btn-premium">Mulai Pesta ✨</button>
+            <p class="instruction" id="instruction-text">Klik tombol di atas untuk kejutan eksklusif.</p>
         </div>
 
         <div class="gift-container hidden" id="gift-box">
@@ -46,8 +61,9 @@
         </div>
 
         <div class="wish-box" id="wish-text">
-            <h2>Happy 22nd Birthday! 🎂✨</h2>
-            <p>Tapi boong hayu pale papale pale pale wkwk </p>
+            <h2>Cheers to 22 Years! 🥂</h2>
+            <div class="divider"></div>
+            <p>Selamat memasuki usia ke-22! Di momen yang sangat spesial ini, semoga langkahmu selalu dituntun menuju keberhasilan, hatimu dipenuhi kedamaian, dan dikelilingi oleh orang-orang tersayang. Nikmati setiap prosesnya dan jadilah versi terbaik dirimu! 💖🌟</p>
         </div>
     </div>
 
